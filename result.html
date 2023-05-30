@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leap Year and Horary Signs - Result</title>
+    <style>
+        body {
+            background-color: #e2e2e2;
+            font-family: Arial, sans-serif;
+            padding: 5px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1000px; /* Adjust the width as per your requirement */
+            margin: 0 auto;
+            text-align: center; /* Center-align the container content */
+
+        }
+
+        .result {
+            background-color: rgb(212, 212, 212);
+            padding: 10px;
+            border-radius: 5px;
+            border-color: green;
+            border-style: solid;
+            text-align: center;
+            display: inline-block; /* Make the result div inline-block */
+        }
+
+        .result h3, .result p {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 25px;
+            text-transform: uppercase;
+            color: black;
+        }
+
+        .result p:first-child {
+            margin-top: 10px;
+        }
+
+        .result img {
+            height: 500px;
+            width: 500px;
+            border-radius: 10px;
+            border-color: orange;
+            border-style: double;
+            margin-top: 10px;
+            display: block; /* Center-align the image */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leap Year and Horary Signs</h1>
+
+        <div class="result">
+            <h3 id="year"></h3>
+            <p id="leapYear"></p>
+            <p id="horarySign"></p>
+            <img id="image" src="" alt="Horary Sign Image">
+        </div>
+
+        <script>
+            /* JavaScript code starts here */
+            // Get the query string from the URL
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            // Get the value of the "year" parameter from the query string
+            var yearInput = urlParams.get("year");
+
+            // Get the elements in the HTML document using their IDs
+            var result = document.getElementById("year"); // Placeholder for the year
+            result.textContent = yearInput; // Set the year value in the placeholder
+
+            var leapYear = document.getElementById("leapYear"); // Placeholder for the leap year message
+            var horarySign = document.getElementById("horarySign"); // Placeholder for the horary sign
+            var image = document.getElementById("image"); // Placeholder for the horary sign image
+
+            // Object containing the horary signs and their corresponding images
+            var horarySigns = {
+                0: { sign: "Dragon", image: "Image/Dragon.jpg" },
+                1: { sign: "Serpent", image: "Image/Serpent.jpg" },
+                2: { sign: "Horse", image: "Image/Horse.jpg" },
+                3: { sign: "Sheep", image: "Image/Sheep.jpg" },
+                4: { sign: "Monkey", image: "Image/Monkey.jpg" },
+                5: { sign: "Cock", image: "Image/Cock.jpg" },
+                6: { sign: "Dog", image: "Image/Dog.jpg" },
+                7: { sign: "Boar", image: "Image/Boar.jpg" },
+                8: { sign: "Rat", image: "Image/Rat.jpg" },
+                9: { sign: "Ox", image: "Image/Ox.jpg" },
+                10: { sign: "Tiger", image: "Image/Tiger.jpg" },
+                11: { sign: "Hare", image: "Image/Hare.jpg" }
+            };
+
+            // Convert the year input from a string to an integer
+            var year = parseInt(yearInput);
+
+            // Check if the year is valid
+            if (isNaN(year)) {
+                leapYear.textContent = "Invalid year input";
+                horarySign.textContent = "";
+                image.style.display = "none";
+            } else {
+                // Check if the year is a leap year
+                if (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+                    leapYear.textContent = "Leap Year";
+                } else {
+                    leapYear.textContent = "Common Year";
+                }
+
+                // Calculate the horary sign for the year
+                var horaryYear = (year - 2000) % 12;
+                if (horaryYear < 0) {
+                    horaryYear += 12;
+                }
+
+                // Get the corresponding horary sign and its image
+                var sign = horarySigns[horaryYear];
+                horarySign.textContent = sign.sign; // Set the horary sign in the placeholder
+                image.src = sign.image; // Set the horary sign image source
+                image.alt = sign.sign; // Set the alt attribute for the horary sign image
+            }
+        </script>
+    </div>
+</body>
+</html>

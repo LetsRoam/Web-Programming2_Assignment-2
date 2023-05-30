@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leap Year and Horary Signs</title>
+    <style>
+        body {
+            background-color: #e2e2e2;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+
+        h1 {
+            color: black;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 33px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 550px;
+            height: 675px;
+            margin: 0 auto;
+            border-style: groove;
+            border-radius: 5px;
+            border-color: green;
+            background-color: whitesmoke;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 15px;
+            width: 100%;
+            background-color: #fff;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        input[type="text"].error {
+            border-color: red;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: rgb(93, 156, 0);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: green;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+
+        .container img {
+            height: 465px;
+            width: 490px;
+            display: flex;
+            margin: auto;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: double orange 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leap Year and Horary Signs</h1>
+    <div class="container">
+        <div style="background-color: #fff; padding: 20px; border-radius: 5px;">
+            <form onsubmit="return checkYear()" action="result.html" method="GET">
+                <label for="year">Enter a year:</label>
+                <input type="text" id="year" name="year" placeholder="YYYY" required>
+                <span class="error-message" id="error-message">*required</span>
+                <input type="submit" value="Check" class="button">
+            </form>
+        </div>
+
+        <script>
+            // This function is called when the form is submitted and checks if the entered year is valid.
+            function checkYear() {
+                // Get the input element for the year
+                var yearInput = document.getElementById("year");
+                // Retrieve the value entered by the user and convert it to an integer
+                var year = parseInt(yearInput.value);
+
+                // Check if the year is not a number or its length is not equal to 4 (YYYY format)
+                if (isNaN(year) || year.toString().length !== 4) {
+                    // If the year is invalid, display an error message
+                    var errorMessage = document.getElementById("error-message");
+                    errorMessage.textContent = "Enter a valid year (YYYY format).";
+                    // Add an "error" class to the year input element to highlight it with a red border
+                    yearInput.classList.add("error");
+                    // Return false to prevent the form from being submitted
+                    return false;
+                }
+
+                // If the year is valid, return true to allow the form submission
+                return true;
+            }
+        </script>
+
+        <img src="Image/Index.jpg">
+    </div>
+</body>
+</html>
